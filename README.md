@@ -73,6 +73,19 @@ Edit the "Send a text message" node to:
 ⏱️ Time: 2025-06-29T11:04:11+05:30
 ```
 
+## 🎥 Live Demo
+
+### Screenshots
+
+![Dashboard Preview](assets/screenshots/IMG_3022.PNG)
+*Smart Sensor Monitoring Dashboard*
+
+### Video Demo
+
+https://github.com/DHNSHYDV/smart-sensor-monitoring/blob/main/assets/videos/Screen%20Recording%202025-06-29%20at%2011.14.17%E2%80%AFAM.mov
+
+> **Note:** For better viewing experience, you can also [download the video](assets/videos/Screen%20Recording%202025-06-29%20at%2011.14.17%E2%80%AFAM.mov).
+
 ## 🤝 Contributing
 Contributions are welcome! Please feel free to submit a Pull Request.
 
