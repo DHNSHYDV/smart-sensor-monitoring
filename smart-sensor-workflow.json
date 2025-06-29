@@ -1,0 +1,277 @@
+{
+  "name": "My workflow",
+  "nodes": [
+    {
+      "parameters": {},
+      "type": "n8n-nodes-base.manualTrigger",
+      "typeVersion": 1,
+      "position": [
+        -120,
+        -120
+      ],
+      "id": "32a54ad1-2ce4-4296-be45-8f44e1042dac",
+      "name": "When clicking ‘Execute workflow’"
+    },
+    {
+      "parameters": {
+        "mode": "runOnceForEachItem",
+        "jsCode": "return {\n  temperature: Math.floor(Math.random() * 100), // 0 to 99\n  humidity: Math.floor(Math.random() * 100),    // 0 to 99\n  gasLevel: parseFloat((Math.random() * 1.2).toFixed(2)), // 0.00 to ~1.2\n  timestamp: new Date().toISOString()\n};\n"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        200,
+        -120
+      ],
+      "id": "75da20c8-53b3-4a97-95b6-5f2f49cf9002",
+      "name": "Code"
+    },
+    {
+      "parameters": {
+        "chatId": "977629924",
+        "text": "=🚨 Sensor Alert!\n🌡️ Temperature: {{$json[\"temperature\"]}} °C\n🧪 Gas Level: {{$json[\"gasLevel\"]}}\n⏱️ Time: {{$json[\"timestamp\"]}}\n",
+        "additionalFields": {}
+      },
+      "type": "n8n-nodes-base.telegram",
+      "typeVersion": 1.2,
+      "position": [
+        940,
+        -220
+      ],
+      "id": "894f1c45-d372-47cb-a6d6-daf2a25b3fe9",
+      "name": "Send a text message",
+      "webhookId": "bad6644d-110f-41a9-933e-6751a1c193d5",
+      "credentials": {
+        "telegramApi": {
+          "id": "HKyUh2mCjrkZ0M51",
+          "name": "Telegram account"
+        }
+      }
+    },
+    {
+      "parameters": {},
+      "type": "n8n-nodes-base.wait",
+      "typeVersion": 1.1,
+      "position": [
+        940,
+        20
+      ],
+      "id": "2424e40f-b41d-4734-85f3-3b1bdf1e566d",
+      "name": "Wait",
+      "webhookId": "0dc1d280-5bdb-4060-9a8c-5760eadb4ee8"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "53df7573-b641-4a1c-b302-5c366210b511",
+              "name": "status",
+              "value": "=ALERT",
+              "type": "string"
+            },
+            {
+              "id": "8285d308-c2b6-4176-992b-b2a363ed114e",
+              "name": "temperature",
+              "value": "={{$json[\"temperature\"]}}",
+              "type": "string"
+            },
+            {
+              "id": "ba9e6206-8372-4b67-a18a-4ac9794212e6",
+              "name": "gasLevel",
+              "value": "={{$json[\"gasLevel\"]}}",
+              "type": "string"
+            },
+            {
+              "id": "bcd121fa-5c5d-48a6-afb3-579e4816513a",
+              "name": "timestamp",
+              "value": "={{$json[\"timestamp\"]}}",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        720,
+        -220
+      ],
+      "id": "7752f104-f8e7-4ebd-a154-dd969c911645",
+      "name": "In case of emergency"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "9c1370cf-696f-4d6e-80c8-3eecd593248e",
+              "name": "status",
+              "value": "normal",
+              "type": "string"
+            },
+            {
+              "id": "83ea6e4b-05fc-4c62-b320-c58d66ce2260",
+              "name": "temperature",
+              "value": "={{$json[\"temperature\"]}}",
+              "type": "string"
+            },
+            {
+              "id": "827724ed-b4bd-4b7b-ab76-199616067ede",
+              "name": "gasLevel",
+              "value": "={{$json[\"gasLevel\"]}}",
+              "type": "string"
+            },
+            {
+              "id": "028e351e-fba2-4b0e-b469-876d2e838002",
+              "name": "timestamp",
+              "value": "={{$json[\"timestamp\"]}}",
+              "type": "string"
+            }
+          ]
+        },
+        "includeOtherFields": true,
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        720,
+        20
+      ],
+      "id": "1359ba19-5ece-4d02-b361-653e6b09b9a3",
+      "name": "Nothing Hazardous"
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "loose",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "id": "46e3955e-2b28-4efb-832b-911884ca3196",
+              "leftValue": "={{ $json[\"temperature\"] }}",
+              "rightValue": 50,
+              "operator": {
+                "type": "number",
+                "operation": "gt"
+              }
+            },
+            {
+              "id": "e1d31ad0-5f92-45b4-8b82-96396d2b884e",
+              "leftValue": "={{ $json[\"gasLevel\"] }}",
+              "rightValue": 0.5,
+              "operator": {
+                "type": "number",
+                "operation": "gt"
+              }
+            }
+          ],
+          "combinator": "or"
+        },
+        "looseTypeValidation": true,
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.2,
+      "position": [
+        440,
+        -120
+      ],
+      "id": "342e7cd4-7e15-42ae-a48c-160f5d935706",
+      "name": "Check Parameters"
+    }
+  ],
+  "pinData": {},
+  "connections": {
+    "When clicking ‘Execute workflow’": {
+      "main": [
+        [
+          {
+            "node": "Code",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Code": {
+      "main": [
+        [
+          {
+            "node": "Check Parameters",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Wait": {
+      "main": [
+        [
+          {
+            "node": "Code",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "In case of emergency": {
+      "main": [
+        [
+          {
+            "node": "Send a text message",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Nothing Hazardous": {
+      "main": [
+        [
+          {
+            "node": "Wait",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Check Parameters": {
+      "main": [
+        [
+          {
+            "node": "In case of emergency",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Nothing Hazardous",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": false,
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "versionId": "d7115816-afd5-4c84-a7ce-031e805de3d5",
+  "meta": {
+    "templateCredsSetupCompleted": true,
+    "instanceId": "fc1334d96d2f627370b6df19c4ad8f3963e776f18313f7ab09a8f28e2c10ba12"
+  },
+  "id": "GgD14o2TvQwu1EIf",
+  "tags": []
+}
