@@ -81,4 +81,4 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 ---
 
-*Created with ❤️ by [DHNSHYDV](https://github.com/DHNSHYDV) using n8n*
+*Smart Sensor Monitoring System by [DHNSHYDV](https://github.com/DHNSHYDV)*
