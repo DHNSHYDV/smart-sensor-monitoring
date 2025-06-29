@@ -82,8 +82,10 @@ Edit the "Send a text message" node to:
 
 ### Screenshots
 
-![Dashboard Preview](assets/screenshots/IMG_3022.PNG)
-*Smart Sensor Monitoring Dashboard*
+<div align="center">
+  <img src="assets/screenshots/IMG_3022.PNG" alt="Dashboard Preview" width="600"/>
+  <p><em>Smart Sensor Monitoring Dashboard</em></p>
+</div>
 
 ## 🤝 Contributing
 Contributions are welcome! Please feel free to submit a Pull Request.
