@@ -1,24 +1,14 @@
-# Set the default language for GitHub language stats
-*.json linguist-language=JSON
-*.py linguist-detectable=false
+# Set the main language for GitHub stats
+* linguist-language=JSON
 
 # Ensure proper handling of line endings
 * text=auto eol=lf
 
-# Explicitly declare text files you want to always be normalized and converted
-# to native line endings on checkout.
+# Explicitly declare text files
 *.md text
 *.txt text
 *.py text
 *.json text
 
-# Declare files that will always have CRLF line endings on checkout.
-*.sln text eol=crlf
-
-# Denote all files that are truly binary and should not be modified.
-*.png binary
-*.jpg binary
-*.jpeg binary
-*.gif binary
-*.pdf binary
-*.zip binary
+# Mark Python files as part of the project
+*.py linguist-detectable=true
