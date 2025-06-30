@@ -1,6 +1,21 @@
 # Smart Sensor Monitoring System with n8n
 
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+[![Python](https://img.shields.io/badge/Python-3.7%2B-blue.svg)](https://www.python.org/)
+[![n8n](https://img.shields.io/badge/n8n-%23000000.svg?logo=n8n&logoColor=white)](https://n8n.io/)
+[![GitHub last commit](https://img.shields.io/github/last-commit/DHNSHYDV/smart-sensor-monitoring)](https://github.com/DHNSHYDV/smart-sensor-monitoring/commits/main)
+
 This project implements a smart sensor monitoring system using n8n workflow automation. The system monitors environmental parameters and sends alerts when thresholds are exceeded.
+
+## 📋 Table of Contents
+
+- [Features](#-features)
+- [Prerequisites](#-prerequisites)
+- [Installation](#-installation)
+- [Usage](#-usage)
+- [Live Demo](#-live-demo)
+- [Contributing](#-contributing)
+- [License](#-license)
 
 ## 🌟 Features
 
